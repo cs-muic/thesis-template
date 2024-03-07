@@ -1,0 +1,71 @@
+\documentclass{muthesis2024}
+
+\usepackage[
+  left=0.77in, right=0.79in,
+  % left=1.2in, right=0.79in, % for printing
+  top=1in, bottom=0.5in,
+  bindingoffset=0in,
+  a4paper
+]{geometry}
+
+\usepackage[numbers]{natbib}
+\setcounter{secnumdepth}{4} % make subsubsection have numberings
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{url}
+
+\usepackage{lipsum}
+
+\usepackage{minted}
+
+\usepackage{caption,setspace}
+\captionsetup{font={stretch=1.5}}
+
+\usepackage[flushleft]{threeparttable}
+\graphicspath{{figures/}}
+
+\makeatletter
+\renewcommand{\@dotsep}{10000} % set distance between dots to make it disappear in the table of contents
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt}
+\makeatother
+
+\input{preamble}
+
+\begin{document}
+
+\maketitle
+
+\linespacing{1.5}
+
+\input{acknowledgements}
+\input{abstract}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+% === THESIS ===
+\input{thesis}
+
+% === APPENDIX ===
+%\appendix % use this if you just have one appendix
+%\appendices % use this if you have more than one appendix
+
+%\chapter{First appendix}
+%\section*{hidden appendix section}
+
+%\chapter{Second appendix}
+% put appendices here
+
+% file containing refs if you are not using bibtex
+% \bibliographystyle{muthesis2021}
+\bibliographystyle{unsrtnat}
+
+\bibliography{references}
+
+\biography
+
+\end{document}

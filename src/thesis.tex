@@ -1,0 +1,22 @@
+\chapter{Introduction} \label{chap:intro}
+
+\lipsum[1-2]
+
+\chapter{Figures} \label{chap:figs}
+
+You can put your figures in the path \texttt{./figures/} and reference them from
+there. For example, this adorable cat is saved as \texttt{./figures/floof-wizard.png}. You can include the picture with the following code:
+\begin{minted}{latex}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{floof-wizard}
+  %                 no ./figures needed ^
+  \caption{This is Walter!}
+\end{figure}
+\end{minted}
+to get the following figure:
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=0.3\textheight]{floof-wizard}
+  \caption{This is (an internet orang car) Walter!}
+\end{figure}
