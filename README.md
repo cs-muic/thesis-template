@@ -2,7 +2,8 @@
 
 A LaTeX template of the thesis book for Mahidol University International College, Mahidol University. This is an updated version for 2024.
 
-See the `Example.pdf` as an example.
+See the `Example.pdf` as an example or see the released file for the most recent
+version.
 
 ## History
 

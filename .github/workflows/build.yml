@@ -1,0 +1,67 @@
+name: Build and Release LaTeX Project
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install Pygments
+        run: pip install Pygments
+
+      - name: Setup LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: src/
+          root_file: main.tex
+          latexmk_shell_escape: true
+          latexmk_use_xelatex: true
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            src/main.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-assets
+          path: src/main.pdf
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Release Asset
+        uses: actions/download-artifact@v2
+        with:
+          name: release-assets
+          path: /tmp
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: /tmp/main.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
